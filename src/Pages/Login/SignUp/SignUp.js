@@ -1,7 +1,9 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
+    
     return (
         <div className='mt-5 border border-1 w-50 mx-auto'>
             <div className='text-center'>
@@ -21,6 +23,12 @@ const SignUp = () => {
                         <Form.Group className="mb-3" controlId="formGroupPassword">
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control type="password" placeholder="Confirm Password" />
+                        </Form.Group>
+                        <Form.Group className='mb-3' controlId='toggle'>
+                            <Form.Text className="text-muted">
+                                <span>Already have an Acount? </span>
+                                <Link to='/login'>LogIn</Link>
+                            </Form.Text>
                         </Form.Group>
                     </Form>
                 </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -17,6 +18,12 @@ const Login = () => {
                         <Form.Group className="mb-3" controlId="formGroupPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" />
+                        </Form.Group>
+                        <Form.Group className='mb-3' controlId='toggle'>
+                            <Form.Text className="text-muted">
+                                <span>Have no Acount? </span>
+                                <Link to='/signup'>Create New</Link>
+                            </Form.Text>
                         </Form.Group>
                     </Form>
                 </div>
