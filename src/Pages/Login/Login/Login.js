@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 
 const Login = () => {
@@ -10,42 +13,50 @@ const Login = () => {
         password: "",
     })
 
+
     const [
         signInWithEmailAndPassword,
         user,
         loading,
-        error,
+        hookError,
     ] = useSignInWithEmailAndPassword(auth);
 
     const handleEmail = e => {
-        setUserInfo({...userInfo, email: e.target.value })
+        setUserInfo({ ...userInfo, email: e.target.value })
     }
 
     const handlePassword = e => {
-        setUserInfo({...userInfo, password: e.target.value })
+        setUserInfo({ ...userInfo, password: e.target.value })
     }
 
     console.log(userInfo.email);
     console.log(userInfo.password)
     const handleLogin = e => {
         e.preventDefault();
-        if(loading){
-            {<p>Loading...</p>}
+        if (loading) {
+            { <p>Loading...</p> }
         }
         signInWithEmailAndPassword(userInfo.email, userInfo.password)
 
     }
-
+    // Nevigation
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-
 
     useEffect(() => {
         if (user) {
             navigate(from);
         }
     }, [user])
+
+    // Firebase login related error /hookError
+
+  /* 
+RF/.  */
+   
+
+
     return (
         <div className='mt-5 border border-1 w-50 mx-auto'>
             <div className='text-center'>
@@ -57,6 +68,9 @@ const Login = () => {
                         <Form.Group className="mb-3" controlId="formGroupEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control onBlur={handleEmail} type="email" placeholder="Enter email" />
+                            {/* {
+                                hookError&& (<p className='text-danger'>{hookError.message}</p>)
+                            } */}
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formGroupPassword">
                             <Form.Label>Password</Form.Label>
